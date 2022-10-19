@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+<form method = "post">
+
+    {{ render_field(form.isim,class = "form-control")}}   
+    {{ render_field(form.puan,class = "form-control")}}
+    {{ render_field(form.kategori,class = "form-control")}}
+    {{ render_field(form.eleştiri,class = "form-control")}}
+    
+
+    
+    <button type="submit" class="btn btn-danger">Düzenle</button>
+</form>
+{% endblock body %}

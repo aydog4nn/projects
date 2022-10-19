@@ -1,0 +1,22 @@
+{% extends "layout.html"%}
+{% block body%}
+
+{% if movie %}
+
+<h4>{{movie.isim}}</h4>
+<hr>
+Kategori:{{movie.kategori}}
+<hr>
+Tarih:{{movie.tarih}}
+<hr>
+{{movie.eleştiri|safe}}
+
+{% else  %}
+
+<div class = "alert alert-warning">
+    Böyle bir film bulunmuyor.
+</div>
+
+{% endif  %}
+
+{% endblock body%}
