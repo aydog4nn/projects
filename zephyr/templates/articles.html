@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class = "row">
+    <div class="col-md-10 offset-md-3">
+        <h3>Makaleler</h3>
+            <hr>
+    </div>
+</div>
+<div class ="row">
+    <div class="col-md-10 offset-md-3">
+    <form>
+        {% csrf_token %}
+        <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Ara">
+        <button type="submit" class="btn btn-danger">Ara</button>
+    </form>
+</div>
+</div>
+{% if articles %}
+{% for article in articles %}
+
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+    <!-- Post Content Column -->
+    <div class="col-lg-8">
+
+      <!-- Title -->
+      <a href = "{% url 'article:detail' article.id %}"><h3 class="mt-4">{{article.title}}</h3></a>
+
+      <!-- Author -->
+      <p class="lead">
+        {{article.author.username}} tarafından yayınlandı.
+      </p>
+
+      <hr>
+
+      <!-- Date/Time -->
+      <p>{{article.created_date}}</p>
+
+
+
+      <!-- Preview Image -->
+      <!-- <img class="img-fluid rounded" src="http://placehold.it/900x300" alt=""> -->
+
+      <hr>
+
+      <!-- Post Content -->
+      {{article.content|safe|truncatewords:20}}
+      <a style = "float :" href = "{% url 'article:detail' article.id %}" class = "btn btn-danger">Devamını oku</a>
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class = "alert alert-danger">
+    Makale bulunamadı.
+</div>
+{% endif %}
+{% endblock body %}
